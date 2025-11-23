@@ -1,0 +1,49 @@
+# Jordan Fuller
+# CIS261 Object-Oriented Computer Programming
+# Lab: Invoice Line-Item Calculator (Week 6 Lab 1)
+
+def print_heading():
+    print("The Invoice Line Item Calculator")
+    print()
+
+def get_price():
+    while True:
+        raw = input("Enter price: ")
+        try:
+            if raw.strip() == "" or "," in raw:
+                raise ValueError
+            price = float(raw)
+            return price
+        except ValueError:
+            print("Invalid decimal number. Please try again.")
+
+def get_quantity():
+    while True:
+        raw = input("Enter quantity: ")
+        try:
+            if raw.strip() == "" or "." in raw or "," in raw:
+                raise ValueError
+            quantity = int(raw)
+            return quantity
+        except ValueError:
+            print("Invalid integer. Please try again.")
+
+def main():
+    print_heading()
+    again = "y"
+    while again.lower() == "y":
+        price = get_price()
+        quantity = get_quantity()
+        total = price * quantity
+
+        print()
+        print(f"PRICE:       {price:>8.2f}")
+        print(f"QUANTITY:    {quantity:>8d}")
+        print(f"TOTAL:       {total:>8.2f}")
+        again = input("Enter another line item? (y/n): ")
+        print()
+
+    print("Bye!")
+
+if __name__ == "__main__":
+    main()
